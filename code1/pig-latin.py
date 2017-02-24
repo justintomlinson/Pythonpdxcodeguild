@@ -10,7 +10,14 @@
 # the first letter if necessary bassed on original input.
 
 
+
 def consonant_convert(orig_word):
+    """
+    >>> consonant_convert('Hat!')
+    'Athya!'
+    >>> consonant_convert('hat')
+    'athya'
+    """
     first_letter = orig_word[0]
     suf_consonant = "ya"
     punc_last = orig_word[-1]
@@ -20,10 +27,16 @@ def consonant_convert(orig_word):
     if first_letter == first_letter.upper():
         pig_latin = "".join(orig_word[1].upper()+orig_word[2:]+first_letter.lower()+suf_consonant+punc_last)
     else:
-        pig_latin = "".join(orig_word[1:]+first_letter+suf_consonant+punc_last)
+        pig_latin = "".join(orig_word[1:]+first_letter+suf_consonant)
     return(pig_latin)
 
 def vowel_convert(orig_word):
+    """
+    >>> vowel_convert('Apple!')
+    'Appleyay!'
+    >>> vowel_convert('apple')
+    'appleyay'
+    """
     first_letter = orig_word[0]
     suf_vowel = "yay"
     punc_last = orig_word[-1]
