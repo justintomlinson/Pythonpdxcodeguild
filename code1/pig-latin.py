@@ -9,7 +9,19 @@
 # Then determines whether the first letter is capitalized. Then arranges the word into pig latin, capitalizing
 # the first letter if necessary bassed on original input.
 
-
+# def puncuation_find(orig_word):
+#     """
+#     >>> puncuation_find('hat')
+#     'hat'
+#     >>> puncuation_find('hat!')
+#     'hat'
+#     """
+#     if orig_word.isalpha() :
+#         lenght = len(orig_word) - 1
+#         orig_word = orig_word[:lenght]
+#     else:
+#         orig_word = orig_word
+#     return(orig_word)
 
 def consonant_convert(orig_word):
     """
