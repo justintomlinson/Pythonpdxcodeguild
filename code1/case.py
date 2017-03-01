@@ -20,7 +20,7 @@ def define_case(user_input):
     if user_input.islower():
         if "_" in user_input:
             case_type = 'snake'
-        elif case_type = 'kebab'
+        else: case_type ='kebab'
     elif user_input.isupper():
         case_type = 'constant'
     else:
