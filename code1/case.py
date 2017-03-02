@@ -1,14 +1,15 @@
 """This program handles case conversions on in user prompted words"""
 
-def define_case(user_input):
+
+def case_format_find(user_input):
     """This function defines the case of the user's input
-    >>> define_case('snake_case')
+    >>> case_format_find('snake_case')
 
-    >>> define_case('CamelCase')
+    >>> case_format_find('CamelCase')
 
-    >>> define_case('kebab-case')
+    >>> case_format_find('kebab-case')
 
-    >>> define_case('CONSTANT_CASE')
+    >>> case_format_find('CONSTANT_CASE')
 
     :return:
     """
@@ -38,7 +39,7 @@ def case_change_intermediate(user_input, case_type):
 
     :return:
     """
-    working = user_input.copy()
+    working = user_input
     new_list = []
     inc = 0
 
@@ -55,13 +56,13 @@ def case_change_intermediate(user_input, case_type):
                 inc = index
         if inc < len(working):
             new_list.append(working[inc:])
-        split = new_list.lower
+        split = [x.lower() for x in new_list]
 
     return (split)
 
 def case_change_final(split,new_format):
-    """This function converts an agnostic version of the word from case_change_intermediate to the new desired case
-    format.
+    """This function converts an agnostic version of the user input word from case_change_intermediate to the user
+    requested case format.
     >>> case_change_final('snake_case')
 
     >>> case_change_final('CamelCase')
@@ -75,37 +76,49 @@ def case_change_final(split,new_format):
     """
     case_change = ''
 
-    if new_format = 'camel':
-        case_change = split.join(split[0].capitalize() + split[1].capitalize())
-    elif new_format = 'snake':
-        case_change = split.join(split[0]+'_'+split[1])
-    elif new_format ='kebab':
-        case_change = split.join(split[0]+'-'+split[1])
+    if new_format == 'camel':
+        case_change = ''.join([y.capitalize() for y in split])
+    elif new_format == 'snake':
+        case_change = '_'.join(split)
+    elif new_format =='kebab':
+        case_change = '-'.join(split)
     else:
-        case_chagne = split.join(split[0]+'-'+split[1])
+        case_change = '-'.join([y.upper() for y in split])
 
-    
+    return(case_change)
 
-    return
+# def output_case(change_case):
+#     """ This function determines the out going case format of the convert word.
+#     >>> output_case('snake_case')
+#
+#     >>> output_case('CamelCase')
+#
+#     >>> output_case('kebab-case')
+#
+#     >>> output_case('CONSTANT_CASE')
+#
+#     :return:
+#     """
+#      results = print('user input = ' + str(user_input), case)
+#     return ()
 
-def output_case():
-    """ This function determines the out going case format of the convert word.
-    >>>output_case('snake_case')
 
-    >>>output_case('CamelCase')
-
-    >>>output_case('kebab-case')
-
-    >>>output_case('CONSTANT_CASE')
+def main ():
+    """This function establishes user inputs and calls the other functions to determine the case format and change ot
+     as the user desires.
 
     :return:
     """
-    return
+    user_input = str(input('Please provide a word in snake_case, CamelCase, kebab-case, or CONSTANT_CASE ->'))
+    new_format = str(input('Please select the format you would like to convert to: snake, camel, kebab, constant - >'))
+    orig_format = case_format_find(user_input)
+    interm_chagne = case_change_intermediate(user_input, orig_format)
+    output_word = case_change_final(interm_chagne, new_format)
+
+    print('Entered format = ' + str(orig_format))
+    print('Changed to ->' + str(output_word))
 
 
- def main ():
-   user_input = str(input('Please provide a word in snake_case, CamelCase, kebab-case, or CONSTANT_CASE ->'))
-    new_format = str
- if __name__ == '__main__':
-#     main()
+if __name__ == '__main__':
+    main()
 
