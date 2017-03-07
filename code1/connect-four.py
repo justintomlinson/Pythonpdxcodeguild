@@ -18,40 +18,65 @@ for index, value in enumerate(move_list):
 #   return
 
 
-#def change_move_list(move_2)
-#   append piece color to move list
-# yellow goes first
-move_update = []
-y = ['y']
-r = ['r']
-for i, val in enumerate(move_2):
-    if i % 2 == 0:
-        move_update.append(val + y )
-    else:
-        move_update.append(val + r)
+#def add_color_to_move_list(move_2):
+#     """Appends red and yellow to the list of moves. Yellow goes first in this scenario
+#
+#     :param move_2:
+#     :return:
+#     """
+# move_update = []
+# y = ['y']
+# r = ['r']
+# for i, val in enumerate(move_2):
+#     if i % 2 == 0:
+#         move_update.append(val + y )
+#     else:
+#         move_update.append(val + r)
+#
+#   return(move_update)
 
-print (move_update)
+#def build_board(row_num, col_num):
+    # """ Creates an empty list of list to represent an empty board game
+    #
+    # :param row_num:
+    # :param col_num:
+    # :return:
+    # """
 
-#   return
+row_num = 6
+col_num = 7
 
-#def build_board(row, col)
+game_board = [[] * col_num for i in range(row_num)]
 
-rows = 6
-col = 7
-
-game_board = [[]*col for i in range(rows)]
-print(game_board)
-print(len(game_board))
 #   return()
 
-#def add_move_to_board(game_board, move_update)
+#def add_move_to_board(game_board, move_update):
+    # """ Appends piece color to game board based on position from the moves list
+    #
+    # :param game_board:
+    # :param move_update:
+    # :returvern:
+    # """
+for col in reversed(range(col_num)):
+    for position in move_2:
+        game_board.append[position]
+        if len(game_board[col]) < row_num:
+            col= col-1
 
-game_play =[]
-for index, list in enumerate(range(len(game_board)- 1,0,-1)):
-    for col, color in enumerate(move_update):
-        game_board.insert[:color]
-
+#        if (check_if_row_full(game_board, col_num, row_num)):
+#        if len(game_board[col])<= row_num:
+#            game_board[row].append(color[1])
 print(game_board)
+
+#print(game_board)
+
+# def check_if_row_full(game_board, row_num, col_num):
+#
+#     if len(game_board[col_num])> row_num:
+#         return True
+#     else:
+#         return False
+
 
 
 
