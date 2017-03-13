@@ -1,9 +1,7 @@
+SUIT_NAME = ['clubs', 'diamonds', 'hearts', 'spades']
+CARD_RANKS = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'quesn', 'king']
 
-
-Class Card(object):
-
-suit_names = ['clubs','diamonds','hearts','spades']
-card_ranks = ['ace', '2','3','4','5','6','7','8','9','10','jack','quesn','king']
+class Card:
 
     def _init_ (self, suit_names, card_ranks):
         self.suit = suit_names

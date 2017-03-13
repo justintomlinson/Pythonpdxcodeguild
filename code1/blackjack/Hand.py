@@ -1,6 +1,6 @@
 """This module creates and scores a hand of blackjack. It will alert the user if they are over 21 """
 
-Class Hand:
+class Hand:
     def _init_ (self):
 
     def _eq_ (self):

@@ -1,8 +1,22 @@
-Import Card.py
+import Card
+import random
 
-Class Deck(object):
-
+class Deck:
     def _init_ (self):
+        """
+
+        :param self:
+        :return:
+        """
+        self.deck = []
+        self.suit = Card.Card(suit)
+        self.rank = Card.Card(rank)
+
+        for suit in Card.SUIT_NAME:
+            for rank in Card.CARD_RANKS:
+                cards = (suit, rank)
+                self.deck.append(cards)
+
 
     def _eq_ (self):
         return
@@ -12,24 +26,14 @@ Class Deck(object):
         return
 
     def shuffle_deck(self):
-    return
+        random.shuffle(self.deck)
+        return
 
     def draw_card_from_top(self):
         #
         return
 
-        # def main():
-        #     run_again_flag = True
-        # while (run_again_flag == True):
-        #     in_str = list(input("Please input a credit card number: "))
-        #     in_str_numbers = [int(x) for x in in_str]
-        #     result = check_card_num(in_str_numbers)
-        #     if result == True:
-        #         print ("Passed checksum.")
-        #     else:
-        #         print("Failed Checksum")
-        #     run_again = input('Run Again.')
-        #     if run_again.lower() not in CONTINUE_PROCESSING_CHARACTERS:
-        #         run_again_flag = False
-        # if __name__ == '__main__':
-        #     main()
+    def main(x):
+    #if running this module directly do x else do nothing
+    if __name__ == '__main__':
+        main()
