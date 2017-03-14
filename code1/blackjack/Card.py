@@ -1,31 +1,23 @@
-SUIT_NAME = ['clubs', 'diamonds', 'hearts', 'spades']
-CARD_RANKS = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'quesn', 'king']
+SUIT_NAME = ['c', 'd', 'h', 's']
+CARD_RANKS = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 
 class Card:
 
-    def _init_ (self, suit_names, card_ranks):
-        self.suit = suit_names
-        self.rank = card_ranks
+    def __init__ (self, SUIT_NAME, CARD_RANKS):
+        self.suit = SUIT_NAME
+        self.rank = CARD_RANKS
 
     # def _eq_ (self):
     #     return
 
-    def _repr_(self):
-        return ('%r! of %r!')(self.rank, self.suit)
+    def __repr__(self):
+        return(self.rank + self.suit)
 
 
-        # def main():
-        #     run_again_flag = True
-        # while (run_again_flag == True):
-        #     in_str = list(input("Please input a credit card number: "))
-        #     in_str_numbers = [int(x) for x in in_str]
-        #     result = check_card_num(in_str_numbers)
-        #     if result == True:
-        #         print ("Passed checksum.")
-        #     else:
-        #         print("Failed Checksum")
-        #     run_again = input('Run Again.')
-        #     if run_again.lower() not in CONTINUE_PROCESSING_CHARACTERS:
-        #         run_again_flag = False
-        # if __name__ == '__main__':
-        #     main()
+def main():
+    mycard = Card(SUIT_NAME[0], CARD_RANKS[0])
+    mysuit = mycard.suit
+    myrank = mycard.rank
+    print(repr(mycard))
+if __name__ == '__main__':
+    main()

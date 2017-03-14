@@ -2,38 +2,43 @@ import Card
 import random
 
 class Deck:
-    def _init_ (self):
+    def __init__ (self):
         """
 
         :param self:
         :return:
         """
-        self.deck = []
-        self.suit = Card.Card(suit)
-        self.rank = Card.Card(rank)
+        self.card_list = []
+
 
         for suit in Card.SUIT_NAME:
             for rank in Card.CARD_RANKS:
-                cards = (suit, rank)
-                self.deck.append(cards)
+                cards = (rank + suit)
+                self.card_list.append(cards)
 
 
-    def _eq_ (self):
-        return
+    # def _eq_ (self):
+    #     return
 
-    def _repr_(self):
+    def __repr__(self):
+        if self.card_list == 0:
+            return('no cards in the card_list')
+        else:
+            return('Beautiful Deck')
 
-        return
 
     def shuffle_deck(self):
-        random.shuffle(self.deck)
+        random.shuffle(self.card_list)
         return
 
     def draw_card_from_top(self):
-        #
+        self.card_list.pop()
         return
 
-    def main(x):
-    #if running this module directly do x else do nothing
-    if __name__ == '__main__':
-        main()
+def main():
+    mydeck = Deck()
+    print(repr(mydeck))
+
+
+if __name__ == '__main__':
+    main()
