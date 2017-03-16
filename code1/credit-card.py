@@ -20,9 +20,11 @@ def reverse_the_digits(c_numlist_1):
 
 def multiply_even_digits (c_numlist_2):
     """This function multiples the even_indexed reversed digits by two
-
+    >>>>multiply_even_digits(    )
     :return:
     """
-    for i in c_numlist_2[::2]:
-        c_numlist_3[i] = c_numlist_2[1]*2
-    return(c_numlist_3)
+
+for i in c_numlist_2[::2]:
+    c_numlist_3[i] = c_numlist_2[1]*2
+
+return(c_numlist_3)

@@ -30,7 +30,6 @@ else:
 print (taxes)
 print (income_float)
 
-
 if income_float >= taxbracket_three:
     taxes = taxes + (taxbracket_three*taxrate_three)
     income_float = income_float - taxbracket_three

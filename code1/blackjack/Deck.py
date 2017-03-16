@@ -24,10 +24,15 @@ class Deck:
         if self.card_list == 0:
             return('no cards in the card_list')
         else:
-            return('Beautiful Deck')
+            return
 
 
     def shuffle_deck(self):
+        """
+
+        :return:
+        >>>
+        """
         random.shuffle(self.card_list)
         return
 

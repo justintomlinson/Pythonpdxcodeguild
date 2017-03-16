@@ -11,6 +11,12 @@ class Card:
     #     return
 
     def __repr__(self):
+        """
+
+        :return:
+        >>> print(repr('A','c'))
+        'Ac'
+        """
         return(self.rank + self.suit)
 
 
