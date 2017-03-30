@@ -1,0 +1,37 @@
+
+.row {
+  max-width: 100%;
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  border-style: solid;
+  border-width: 1px;
+  border-color: Black;
+  height: 100px;
+}
+
+.column {
+  margin: 10px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  border-style: solid;
+  border-width: 1px;
+  border-color: Black;
+  width: 90px;
+}
+
+.col {
+  margin: 10px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  border-style: solid;
+  border-width: 1px;
+  border-color: Black;
+  padding: 10px;
+}
+
+.col:first-of-type {
+  margin: 10px;
+  flex-grow: 4;
+  flex-shrink: 4;
+}

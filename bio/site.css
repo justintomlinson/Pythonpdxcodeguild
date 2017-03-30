@@ -1,0 +1,18 @@
+
+body {background-color: #F5DEB3;}
+
+blockquote {
+  font-family: Garamond,serif;
+  font-style: italic;
+        color: #80000;
+      }
+
+img {padding: 1px;
+    border: 10px round #021a40;
+    border-radius: 5px;
+    background-color:#ff0;}
+
+li::before {
+  padding: 2px;
+  content: "☞";
+  list-style: none;}
