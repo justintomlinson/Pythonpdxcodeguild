@@ -1,49 +1,66 @@
 """ This progroam reads a file and reformats """
 
-#def import_file (inputfile):
+#def import_file (inputfile2):
+#    """ Import text files and reads the file into a list
+
+#   :return: file_lines
 #    """
-
-#   :return:
-#    """
-import csv
-
-
-
-with open('inputfile.txt') as input_data:
+with open('inputfile2.txt') as input_data:
     file_lines = input_data.readlines()
+#   retun(file_lines)
 
+def format_to_list(file_lines):
+    """
+
+    :param file_lines:
+    :return:
+    """
 
 new_list = []
-for index, value in enumerate(file_lines):
+for value in file_lines:
     new_list.append((value.strip('\n')).split(','))
-#
+
 work_list = []
 for sublst in new_list:
     for item in sublst:
         work_list.append(','.join(sublst).split(' '))
+#   return(work_list)
 
-max_length = [max(len(str(x))for x in column)for column in zip(*work_list)]
-
-
-# # for index, elem in enumerate(new):
-# #     if index != len(new):
-# #         new_mod.append((elem).split(','))
+# #def find_column_length(work_list):
+#     """Finds the length of each string a list and then finds the max length out of all strings in that column
 #
-# # def make_partition_line(max_length):
+#     :param work_list:
+#     :return:
+#     """
+max_length = [max(len(str(x))for x in column)for column in zip(*work_list)]
+#   return(max_length
+
+# #def create_empty_line(max_length):
+#     """
+#
+#     :param max_length:
+#     :return:
+#     """
 for i, col in enumerate(max_length):
     make_line = str('|'+('-'*max_length[i]))
 #    return(make_line)
 
-#insert_line = (str('|'+'-'*max_length +'|', end = ''))
-print('|'+ make_line)
-for index, value in enumerate(work_list):
-    print(value)
-     if index < 2:
-         print(work_list + make_line, end = '')
-         for i, item in enumerate(value):
-             print(make_line, end = '',)
 
-print('|')
+print(make_line
+print(str(work_list[0]), end = '')
+print(make_line+'|', end = '')
+
+for i in work_list[1:len(work_list)]:
+    print(str(work_list[i]))
+
+
+# for index, value in enumerate(work_list):
+#      print(value)
+#      if index < 2:
+#           print( make_line +'|', end = '')
+#           for i, item in enumerate(value):
+#              print(make_line, end = '',)
+
 
 
 
