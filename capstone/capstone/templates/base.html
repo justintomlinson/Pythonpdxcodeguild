@@ -13,11 +13,15 @@
             <input type="text" name="lastname"><br>
             Address:<br>
             <input type="text">
-            State: <input="text"> Zipcode
+            State: <input="text"> Zipcode <input="text"><br>
+
         </form>
     </div>
     <div>
-        {{  }}
+        <form action="{% url 'JSON_VIEW_NAME' %}" method="post">
+            <textarea name="some-text"></textarea>
+            <input type="submit">
+        </form>{{  }}
     </div>
 </body>
 </html>
