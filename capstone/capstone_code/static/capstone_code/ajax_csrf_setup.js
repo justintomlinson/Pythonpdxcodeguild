@@ -1,8 +1,8 @@
 /**
  * Created by jetto on 4/20/2017.
  */
-<script src="{% static 'DJANGO_APP_NAME/ajax_csrf_setup.js' %}"></script>
-    <script src="{% static 'DJANGO_APP_NAME/main.js' %}"></script>
+<script src="{% static 'capstone_code/ajax_csrf_setup.js' %}"></script>
+    <script src="{% static 'capstone_code/main.js' %}"></script>
 
 var sourceForm = $('#my-form');
 
