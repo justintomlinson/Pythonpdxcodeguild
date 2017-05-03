@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from capstone_code import models
+from capstone_code.models import Wine, Winery, Cellar
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -16,6 +16,7 @@ def render_winery_form(request):
     :param request: 
     :return: 
     """
+
     return render(request, "./winery_form.html")
 
 def render_profile(request):
@@ -24,6 +25,7 @@ def render_profile(request):
     :param request: 
     :return: 
     """
+    user_name = User.first_name
     return render(request, "./home.html")
 
 
@@ -49,4 +51,23 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
-    signup
+
+def view_wines(request):
+    """
+    
+    :param request: 
+    :return: 
+    """
+
+    return render(request, "./view_wines.html")
+
+
+def view_winery(request):
+    """
+    
+    :param request: 
+    :return: 
+    """
+
+    return render(request, "./view_winery.html")
+

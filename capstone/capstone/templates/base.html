@@ -1,27 +1,28 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>New Profile</title>
-</head>
-<body>
-    <div>
-        <form>
-            First Name: <br>
-            <input type="text" name="firstname"><br>
-            Last Name: <br>
-            <input type="text" name="lastname"><br>
-            Address:<br>
-            <input type="text">
-            State: <input="text"> Zipcode <input="text"><br>
+    <!link rel="stylesheet" href="/style.css" />
+    <script type = 'text/javascript'></script>
 
-        </form>
-    </div>
-    <div>
-        <form action="{% url 'JSON_VIEW_NAME' %}" method="post">
-            <textarea name="some-text"></textarea>
-            <input type="submit">
-        </form>{{  }}
-    </div>
-</body>
+    <title>{% block title %} {% endblock %}</title>
+</head>
+    <body>
+        <b><h1>E-Cellar</h1></b>
+        {% block content %}
+        <h2> Welcome to E-Cellar</h2>
+            <div id="descript">
+                <p> E- Cellar provides allows you store and track your personal wine collection for
+                    constant easy access</p>
+            </div>
+            <div>
+            <button type="button">Existing User</button> <button type="button"> New User</button>
+            </div>
+        {% endblock %}
+
+    </body>
 </html>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="{% static 'capstone_code/ajax_csrf_setup.js' %}"></script>
+{% block script %} {% endblock %}

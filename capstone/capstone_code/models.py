@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.forms import ModelForm
+from django.core.validators import RegexValidator
 
 # Create your models here.
 
@@ -12,23 +12,12 @@ from django.forms import ModelForm
 #     username = models.ForeignKey(User)
 #     password = models.ForeignKey(User)
 
-STOCK_WINERIES = (
-    ('SYNCLINE', 'Syncline'),
-    ('COR_CELLARS', 'Cor Cellars'),
-    ('SLEIGHT_OF_HAND', 'Sleight of Hand'),
-    ('MARCHESI','Marchsesi'),
-    ('MEMALOOSE',"Memaloose"),
-    ('EARTH', 'Earth')
-    )
-
-
-
-
 
 class Winery(models.Model):
-    winery_name = models.CharField(max_length=30, unique=True, choices=STOCK_WINERIES)
-    winery_addr = models.CharField(max_length=50, help_text='Optional')
-    winery_phn = models.IntegerField()
+    winery_name = models.CharField(max_length=30, unique=True)
+    winery_addr = models.CharField(max_length=50, blank=True, help_text='Optional')
+    winery_phn = models.CharField(max_length=12, blank=True, help_text='Optional')
+
 
     def __str__(self):
         return self.winery_name
@@ -40,10 +29,10 @@ class Winery(models.Model):
 
 class Wine(models.Model):
     wine_name = models.CharField(max_length=30)
-    winery_name = models.CharField(max_length=30, unique=True, choices=STOCK_WINERIES)
+    winery_name = models.ForeignKey('Winery', on_delete=models.CASCADE)
     varietal = models.CharField(max_length=30)
-    price = models.PositiveIntegerField()
-    quantity = models.IntegerField()
+    price = models.DecimalField(max_digits=6,decimal_places=2)
+    quantity = models.IntegerField(max_length=3)
     #barcode = models.PositiveIntegerField
     #notes = models.CharField(max_length=250)
 
@@ -58,7 +47,8 @@ class Cellar(models.Model):
     user = models.ForeignKey(User)
 
     def __str__(self):
-        return self.wine_name, self.username
+        return self.wine_name, self.user
+
 
 
 

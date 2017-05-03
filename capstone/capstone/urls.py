@@ -23,6 +23,8 @@ from capstone_code.views import render_winery_form
 from capstone_code.views import render_profile
 from capstone_code.views import signup
 from capstone_code.views import render_wine_form
+from capstone_code.views import view_wines
+from capstone_code.views import view_winery
 
 router = routers.DefaultRouter()
 router.register(r'user', views_restapi.UserViewSet)
@@ -41,5 +43,7 @@ urlpatterns = [
     url(r'^silk', include('silk.urls', namespace='silk')),
     url(r'^render_winery_form$', render_winery_form, name='winery_form'),
     url(r'^render_profile$', render_profile, name='home'),
-    url(r'^render_wine_form$', render_wine_form, name='add_wine')
+    url(r'^render_wine_form$', render_wine_form, name='add_wine'),
+    url(r'^view_wines$', view_wines, name='view_wines'),
+    url(r'^view_winery$', view_winery, name='view_winery')
 ]

@@ -1,0 +1,14 @@
+{%  extends "base.html" %}
+
+{% block title %} All Wines{% endblock %}
+
+{% block content %}
+    <p> Here are all of the wineries currently logged into our system </p>
+    <ul>
+        {% for winery in Winery.objects.all %}
+            <li>{{ winery.winery_name}}</li>
+        {% empty %}
+            <li> Sorry, no wineries available </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
