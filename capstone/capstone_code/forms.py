@@ -15,12 +15,14 @@ class SignUpForm(UserCreationForm):
 
 
 class WineryForm(ModelForm):
+
     class Meta:
         model = Winery
         fields = ['winery_name', 'winery_addr', 'winery_phn']
 
 
 class WineForm(ModelForm):
+
     class Meta:
         model = Wine
         fields = ['wine_name', 'winery_name', 'varietal', 'price', 'quantity']

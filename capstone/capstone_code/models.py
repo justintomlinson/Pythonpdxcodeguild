@@ -31,8 +31,8 @@ class Wine(models.Model):
     wine_name = models.CharField(max_length=30)
     winery_name = models.ForeignKey('Winery', on_delete=models.CASCADE)
     varietal = models.CharField(max_length=30)
-    price = models.DecimalField(max_digits=6,decimal_places=2)
-    quantity = models.IntegerField(max_length=3)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    quantity = models.IntegerField(default=1)
     #barcode = models.PositiveIntegerField
     #notes = models.CharField(max_length=250)
 

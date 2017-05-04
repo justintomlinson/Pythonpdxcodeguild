@@ -40,13 +40,15 @@ INSTALLED_APPS = [
     'capstone_code.apps.CapstoneCodeConfig',
     'rest_framework',
     'capstone',
-    'silk'
+    'silk',
+    'xlrd',
 
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAdminUser',
+        'rest_framework.permissions.DjangoModelPermissionORAnonReadOnly'
     ],
     'PAGE_SIZE': 10
 }

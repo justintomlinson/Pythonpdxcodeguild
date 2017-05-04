@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from capstone_code.models import Wine, Winery, Cellar
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from capstone_code.forms import SignUpForm
 
 
@@ -71,3 +71,10 @@ def view_winery(request):
 
     return render(request, "./view_winery.html")
 
+def home_page (request, username):
+
+    user = User.objects.get(username=username)
+    template = get_template('home.html')
+    variables = Context({'username':username,})
+    output = template.render(variable)
+    return render(output)

@@ -25,6 +25,7 @@ from capstone_code.views import signup
 from capstone_code.views import render_wine_form
 from capstone_code.views import view_wines
 from capstone_code.views import view_winery
+from capstone_code.views import home_page
 
 router = routers.DefaultRouter()
 router.register(r'user', views_restapi.UserViewSet)
@@ -45,5 +46,6 @@ urlpatterns = [
     url(r'^render_profile$', render_profile, name='home'),
     url(r'^render_wine_form$', render_wine_form, name='add_wine'),
     url(r'^view_wines$', view_wines, name='view_wines'),
-    url(r'^view_winery$', view_winery, name='view_winery')
+    url(r'^view_winery$', view_winery, name='view_winery'),
+    url(r'^home_page$', home_page, name='home_page'),
 ]
