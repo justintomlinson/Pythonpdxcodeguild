@@ -16,6 +16,7 @@ Including another URLconf
 
 from django.conf.urls import url, include
 from rest_framework import routers
+from rest_framework.urlpatterns import format_suffix_patterns
 from capstone_code import views_restapi
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
@@ -25,7 +26,7 @@ from capstone_code.views import signup
 from capstone_code.views import render_wine_form
 from capstone_code.views import view_wines
 from capstone_code.views import view_winery
-from capstone_code.views import home_page
+#from capstone_code.views import home_page
 
 router = routers.DefaultRouter()
 router.register(r'user', views_restapi.UserViewSet)
@@ -47,5 +48,9 @@ urlpatterns = [
     url(r'^render_wine_form$', render_wine_form, name='add_wine'),
     url(r'^view_wines$', view_wines, name='view_wines'),
     url(r'^view_winery$', view_winery, name='view_winery'),
-    url(r'^home_page$', home_page, name='home_page'),
+    #url(r'^home_page$', home_page, name='home_page'),
+    url(r'^capstone_code/$', views_restapi.wine_list),
+    url(r'^capstone_code/(?P<pk>)$', views_restapi.wine_detail)
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)

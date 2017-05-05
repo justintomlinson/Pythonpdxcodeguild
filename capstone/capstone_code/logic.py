@@ -7,7 +7,6 @@ from django.contrib.auth.forms import UserCreationForm
 from capstone_code.forms import SignUpForm
 
 
-# Create your views heres
 
 
 

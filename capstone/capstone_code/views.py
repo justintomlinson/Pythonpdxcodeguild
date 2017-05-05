@@ -71,10 +71,10 @@ def view_winery(request):
 
     return render(request, "./view_winery.html")
 
-def home_page (request, username):
-
-    user = User.objects.get(username=username)
-    template = get_template('home.html')
-    variables = Context({'username':username,})
-    output = template.render(variable)
-    return render(output)
+# def home_page (request, username):
+#
+#     user = User.objects.get(username=username)
+#     template = get_template('home.html')
+#     variables = Context({'username':username})
+#     output = template.render(variable)
+#     return render(output)
