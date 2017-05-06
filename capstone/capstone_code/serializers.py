@@ -4,10 +4,13 @@ from capstone_code.models import Wine, Winery, Cellar
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    
+    """
 
     class Meta:
         model = User
-        fields =('url', 'username', 'email', 'groups',)
+        fields =('url', 'id', 'username', 'email', 'wine', 'groups',)
 
 
 
@@ -15,15 +18,22 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Group
-        fields = ('url', 'name')
+        fields = ('url', 'id', 'name')
 
 class WineSerializer(serializers.HyperlinkedModelSerializer):
-
-    class Meta:
+    """
+    
+    """
+    owner = serializers.ReadOnlyField(source = 'owner.username')
+    #Optional highlight setup here
         model = Wine
-        fields = ('url', 'wine_name', 'winery_name', 'varietal', 'price', 'quantity')
+        fields = ('url', 'id', 'wine_name', 'winery_name', 'varietal', 'price', 'quantity')
 
 class WinerySerializer(serializers.HyperlinkedModelSerializer):
+    """
+    
+    """
+
 
     class Meta:
         model = Winery

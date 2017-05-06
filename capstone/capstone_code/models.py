@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
+from pygments import get_lexer_by_name
+from pygments.formatters.html import HtmlFormatter
+from pygments import highlight
 
 # Create your models here.
 
@@ -35,10 +38,25 @@ class Wine(models.Model):
     quantity = models.IntegerField(default=1)
     #barcode = models.PositiveIntegerField
     #notes = models.CharField(max_length=250)
-
+    owner = models.ForeignKey('auth.User', related_name='snippets', on_delete=models.CASCADE)
+    highlighted = models.TextField()
 
     def __str__(self):
         return self.wine_name
+
+    def save(self, *args, **kwargs):
+        """
+        Use the `pygments` library to create a highlighted HTML
+        representation 
+        """
+    lexer = get_lexer_by_name(self.language)
+    linenos = self.linenos and 'table' or False
+    options = self.title and {'title': self.title} or {}
+    formatter = HtmlFormatter(style=self.style, linenos=linenos,
+                              full=True, **options)
+    self.highlighted = highlight(self.code, lexer, formatter)
+    super(Wine, self).save(*args, **kwargs)
+
 
 class Cellar(models.Model):
     wine_name = models.ForeignKey('Wine')

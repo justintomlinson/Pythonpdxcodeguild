@@ -1,48 +1,58 @@
-from django.contrib.auth.models import User, Group
+from capstone_code.serializers import WineSerializer, WinerySerializer, CellarSerializer, UserSerializer
+from capstone_code.models import Wine, Winery, Cellar
 from rest_framework.response import Response
-from rest_framework import viewsets
 from rest_framework import status
 from rest_framework.decorators import api_view
-from capstone_code.serializers import UserSerializer, GroupSerializer, WineSerializer, WinerySerializer, \
-                                        CellarSerializer
-from capstone_code.models import Wine, Winery, Cellar
+from rest_framework import generics
+from rest_framework.views import APIView
+from django.http import Http404
+from rest_framework.reverse import reverse
+from django.contrib.auth.models import User
+from rest_framework import renderers
 
 
-class UserViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows groups dto be viewed or edited
-    """
-    queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
+# Come back to this if handling permissions and Authentication
+# class UserList (generics.ListAPIView):
+#     queryset = User.objects.all()
+#     serializer_class = UserSerializer
+#
+# class UserDetail(generics.RetrieveAPIView):
+#     queryset = User.objects.all()
+#     serializer_class = UserSerializer
 
-class GroupViewSet(viewsets.ModelViewSet):
+class WineList(generics.ListCreateAPIView):
     """
-    API endpoint that allows users to be viewed or edited
+    Creates functionality to create and list Wine Model objects bound to the get and post methods
     """
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
 
-class WineViewSet(viewsets.ModelViewSet):
-    """
-        API endpoint that allows wine data to be viewed or edited
-    """
-    queryset= Wine.objects.all()
+    queryset = Wine.objects.all()
     serializer_class = WineSerializer
 
-class WineryViewSet(viewsets.ModelViewSet):
-    """
-     API endpoint that allows winery data to be viewed or edited
-    """
-    queryset = Winery.objects.all()
-    serializer_class = WinerySerializer
 
 
-class CellarViewSet(viewsets.ModelViewSet):
+class WineDetail(generics.RetrieveUpdateDestroyAPIView):
     """
-     API endpoint that allows personal cellar data to be viewed or edited
+    
     """
-    queryset = Cellar.objects.all()
-    serializer_class = CellarSerializer
+    queryset = Wine.objects.all()
+    serializer_class = WineSerializer
+
+
+
+
+@api_view(['GET'])
+def api_root(request, format=None):
+     return Response({
+         'users': reverse('user-list', request=request, format=format)})
+        #recreate for the other models
+        #'wines':
+
+
+
+
+
+
+
 
 @api_view(['GET', 'POST'])
 def wine_list(request):
