@@ -15,9 +15,8 @@ Including another URLconf
 """
 
 from django.conf.urls import url, include
-from rest_framework import routers
-from rest_framework.urlpatterns import format_suffix_patterns
-from capstone_code import views_restapi
+from rest_framework.routers import DefaultRouter
+from capstone_code import views
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from capstone_code.views import render_winery_form
@@ -28,20 +27,21 @@ from capstone_code.views import view_wines
 from capstone_code.views import view_winery
 #from capstone_code.views import home_page
 
-router = routers.DefaultRouter()
-router.register(r'user', views_restapi.UserViewSet)
-router.register(r'groups', views_restapi.GroupViewSet)
-router.register(r'winery', views_restapi.WineryViewSet)
-router.register(r'wine', views_restapi.WineViewSet)
-router.register(r'cellar', views_restapi.CellarViewSet)
+router = DefaultRouter()
+router.register(r'user', views.UserViewSet)
+router.register(r'groups', views.GroupViewSet)
+router.register(r'winery', views.WineryViewSet)
+router.register(r'wine', views.WineViewSet)
+router.register(r'cellar', views.CellarViewSet)
 
-urlpatterns = [
+
+urlpatterns =([
+    url(r'^api/', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^signup/$', signup, name='signup'),
     url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
     url(r'^admin/', admin.site.urls),
-    url(r'^api/', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^silk', include('silk.urls', namespace='silk')),
     url(r'^render_winery_form$', render_winery_form, name='winery_form'),
     url(r'^render_profile$', render_profile, name='home'),
@@ -49,8 +49,4 @@ urlpatterns = [
     url(r'^view_wines$', view_wines, name='view_wines'),
     url(r'^view_winery$', view_winery, name='view_winery'),
     #url(r'^home_page$', home_page, name='home_page'),
-    url(r'^capstone_code/$', views_restapi.wine_list),
-    url(r'^capstone_code/(?P<pk>)$', views_restapi.wine_detail)
-]
-
-urlpatterns = format_suffix_patterns(urlpatterns)
+])
