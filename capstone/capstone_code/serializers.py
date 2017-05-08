@@ -7,10 +7,11 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     """
     
     """
+    #wines = serializers.PrimaryKeyRelatedField(queryset=Wine.objects.all(), view_name='wine-detail', many=True)
 
     class Meta:
         model = User
-        fields =('url', 'id', 'username', 'email', 'wine', 'groups',)
+        fields = ('url', 'id', 'username', 'email', 'wines', 'groups',)
 
 
 
@@ -25,7 +26,9 @@ class WineSerializer(serializers.HyperlinkedModelSerializer):
     
     """
     owner = serializers.ReadOnlyField(source = 'owner.username')
-    #Optional highlight setup here
+    #highlight = serializers.HyperlinkedIdentityField(view_name='wine-highlight', format='html')
+
+    class Meta:
         model = Wine
         fields = ('url', 'id', 'wine_name', 'winery_name', 'varietal', 'price', 'quantity')
 
@@ -33,7 +36,6 @@ class WinerySerializer(serializers.HyperlinkedModelSerializer):
     """
     
     """
-
 
     class Meta:
         model = Winery

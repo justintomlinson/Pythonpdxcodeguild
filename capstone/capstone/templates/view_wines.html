@@ -5,10 +5,10 @@
 {% block content %}
     <p> Here are all of the wines currently logged into our system </p>
         <ul>
-        {% for wines in Wines.objects.all %}
-            <li>{{ Wines.wines}}</li>
+        {% for wine in wines %}
+            <li>{{ wine.wine_name}}</li>
         {% empty %}
-            <li> Sorry, no wineries available </li>
+            <li> Sorry, no wines available </li>
         {% endfor %}
         </ul>
 {% endblock %}

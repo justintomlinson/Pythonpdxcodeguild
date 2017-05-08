@@ -3,6 +3,13 @@
 {% block title %} E-Cellar {% endblock %}
 
 {% block content %}
-    <h1> WELCOME {{ user_name}}</h1>
+    <h1> WELCOME {{user.username}}</h1>
+    <ul>
+        {% for user in users %}
+            <li>{{ users.username}}</li>
+        {% empty %}
+            <li> Sorry, no wines available </li>
+        {% endfor %}
+    </ul>
 
 {% endblock %}
