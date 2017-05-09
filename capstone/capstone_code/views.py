@@ -15,16 +15,24 @@ from rest_framework.renderers import TemplateHTMLRenderer
 # Create your views here.
 
 
-class UserViewSet(viewsets.ReadOnlyModelViewSet):
+class UserViewSet(viewsets.ModelViewSet):
     """
-    This viewset automatically provides `list` and `detail` actions.
+    retrieve:
+    Return the given user.
+
+    list:
+    Return a list of all the existing users.
+
+    create:
+    Create a new user instance.
+
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
 
-class GroupViewSet(viewsets.ReadOnlyModelViewSet):
+class GroupViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited
     """
@@ -37,16 +45,10 @@ class WineViewSet(viewsets.ModelViewSet):
     `update`, `destroy`, and `highlight` action.
     """
 
-    render_classes = [TemplateHTMLRenderer]
-    template_name = 'view_wines.html'
+    # render_classes = [TemplateHTMLRenderer]
+    # template_name = 'view_wines.html'
     serializer_class = WineSerializer
     queryset = Wine.objects.all()
-
-    def get(self, request):
-        queryset = Wine.objects.all()
-        return Response({'wines':queryset})
-
-
 
 
     # def perform_create(self, serializer):
@@ -59,16 +61,11 @@ class WineryViewSet(viewsets.ModelViewSet):
      API endpoint that allows winery data to be viewed or edited
     """
 
-    render_classes = [TemplateHTMLRenderer]
-    template_name = 'view_winery.html'
+    #render_classes = [TemplateHTMLRenderer]
+    #template_name = 'view_winery.html'
     queryset = Winery.objects.all()
     serializer_class = WinerySerializer
 
-    def get(self, queryset, request):
-        return Response({'winery': queryset})
-
-    # def perform_create(self, serializer):
-    #     serializer.save(owner=self.request.user)
 
 
 class CellarViewSet(viewsets.ModelViewSet):
@@ -97,8 +94,9 @@ def render_profile(request):
     :param request: 
     :return: 
     """
-    user_name = User.first_name
-    return render(request, "./home.html")
+    user_data = User.objects.all()
+    arguments = {'user': user_data}
+    return render(request, "./home.html", arguments)
 
 
 def render_wine_form(request):
@@ -124,14 +122,16 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
 
+
 def view_wines(request):
     """
     
     :param request: 
     :return: 
     """
-
-    return render(request, "./view_wines.html")
+    all_wines = Wine.objects.all()
+    arguments ={{'wine':all_wines}}
+    return render(request, "./view_wines.html", arguments)
 
 
 def view_winery(request):
@@ -140,16 +140,11 @@ def view_winery(request):
     :param request: 
     :return: 
     """
+    all_wineries = Winery.objects.all()
+    arguments = {'winery':all_wineries}
+    return render(request, "./view_winery.html", arguments)
 
-    return render(request, "./view_winery.html")
 
-# def home_page (request, username):
-#
-#     user = User.objects.get(username=username)
-#     template = get_template('home.html')
-#     variables = Context({'username':username})
-#     output = template.render(variable)
-#     return render(output)
 
 # class WineList(generics.ListCreateAPIView):
 #     """
@@ -168,13 +163,13 @@ def view_winery(request):
 #     queryset = Wine.objects.all()
 #     serializer_class = WineSerializer
 
-class UserDetail(APIView):
-    """
-    
-    """
-    renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'home.html'
-
-    def get(self, request):
-        queryset = User.objects.all()
-        return Response({'users': queryset})
+# class UserDetail(APIView):
+#     """
+#
+#     """
+#     renderer_classes = [TemplateHTMLRenderer]
+#     template_name = 'home.html'
+#
+#     def get(self, request):
+#         queryset = User.objects.all()
+#         return Response({'users': queryset})

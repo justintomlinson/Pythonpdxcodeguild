@@ -19,3 +19,29 @@
         <button type="submit">Sign up</button>
     </form>
 {% endblock %}
+{% block script %}<script>
+    function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    $("#sendUserData").click(function(){
+        var mydata = new Object();
+        mydata.username = $("[name=username]").val();
+        mydata.first_name = $("[name=first_name]").val();
+        mydata.last_name = $("[name=last_name]").val();
+        mydata.email = $("[name=email]").val();
+        var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+        $.ajax({
+            type: "POST",
+            url: "/api/user/",
+            contentType: "application/json;",
+            data: JSON.stringify(mydata),
+            dataType: "json",
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }},
+        }).error(function(r){ console.log(r) })
+            .success(function(r){ console.log("success", r) })
+    });</script> {% endblock %}

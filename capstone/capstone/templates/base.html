@@ -8,19 +8,28 @@
 
     <title>{% block title %} {% endblock %}</title>
 </head>
-    <body>
-        <b><h1>E-Cellar</h1></b>
-        {% block content %}
-        <h2> Welcome to E-Cellar</h2>
-            <div id="descript">
-                <p> E- Cellar provides allows you store and track your personal wine collection for
-                    constant easy access</p>
+    <body class="container">
+     <b><h1>E-Cellar</h1></b>
+        <nav id="sidebar">
+             <div id="nav-list">
+                <ul><a href="login.html">Login</a></ul>
+                <ul><a href="home.html">Profile</a></ul>
+                <ul><a href="Cellar">Cellar</a></ul>
+                <ul><a href="view_winery"> All Wineries</a></ul>
+                <ul><a href="view_wines">All Wines</a></ul>
+                <ul><a href="logged_out">Exit</a></ul>
             </div>
-            <div>
-            <button type="button">Existing User</button> <button type="button"> New User</button>
+        </nav>
+            <div id="main">
+            {% block content %}
+                <h3> Welcome to E-Cellar</h3>
+                <div id="descriptor">
+                    <p> E- Cellar provides allows you store and track your personal wine collection for
+                        constant easy access</p>
+                </div>
+                <button type="button">Existing User</button> <button type="button"> New User</button>
             </div>
         {% endblock %}
-
     </body>
 </html>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>

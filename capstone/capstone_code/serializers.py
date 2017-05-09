@@ -11,7 +11,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = User
-        fields = ('url', 'id', 'username', 'email', 'wines', 'groups',)
+        fields = ('url', 'id', 'username', 'first_name', 'last_name', 'email')
 
 
 
@@ -25,7 +25,7 @@ class WineSerializer(serializers.HyperlinkedModelSerializer):
     """
     
     """
-    owner = serializers.ReadOnlyField(source = 'owner.username')
+    #owner = serializers.ReadOnlyField(source='owner.username')
     #highlight = serializers.HyperlinkedIdentityField(view_name='wine-highlight', format='html')
 
     class Meta:
