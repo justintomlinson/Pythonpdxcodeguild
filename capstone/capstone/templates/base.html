@@ -8,18 +8,19 @@
 
     <title>{% block title %} {% endblock %}</title>
 </head>
-    <body class="container">
-     <b><h1>E-Cellar</h1></b>
         <nav id="sidebar">
              <div id="nav-list">
+                 <h1> Navigation </h1>
                 <ul><a href="login.html">Login</a></ul>
                 <ul><a href="home.html">Profile</a></ul>
                 <ul><a href="Cellar">Cellar</a></ul>
-                <ul><a href="view_winery"> All Wineries</a></ul>
-                <ul><a href="view_wines">All Wines</a></ul>
-                <ul><a href="logged_out">Exit</a></ul>
+                <ul><a href="http://127.0.0.1:8000/view_winery"> All Wineries</a></ul>
+                <ul><a href="http://127.0.0.1:8000/view_wines">All Wines</a></ul>
+                <ul><a href="http://127.0.0.1:8000/logged_out">Log Out</a></ul>
             </div>
         </nav>
+    <body class="container">
+        <b><h1>E-Cellar</h1></b>
             <div id="main">
             {% block content %}
                 <h3> Welcome to E-Cellar</h3>

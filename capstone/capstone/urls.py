@@ -25,6 +25,7 @@ from capstone_code.views import signup
 from capstone_code.views import render_wine_form
 from capstone_code.views import view_wines
 from capstone_code.views import view_winery
+from capstone_code.views import render_cellar_form
 
 
 router = routers.DefaultRouter()
@@ -40,7 +41,7 @@ urlpatterns = [
     url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
     url(r'^admin/', admin.site.urls),
-    url(r'^api', include(router.urls)),
+    url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^silk', include('silk.urls', namespace='silk')),
     url(r'^render_winery_form$', render_winery_form, name='winery_form'),
@@ -48,4 +49,5 @@ urlpatterns = [
     url(r'^render_wine_form$', render_wine_form, name='add_wine'),
     url(r'^view_wines$', view_wines, name='view_wines'),
     url(r'^view_winery$', view_winery, name='view_winery'),
+    url(r'^render_cellar_form$', render_cellar_form, name='add_cellar_data')
 ]

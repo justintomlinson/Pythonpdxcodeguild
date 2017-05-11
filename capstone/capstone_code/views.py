@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from rest_framework import viewsets
 from capstone_code.models import Wine, Winery, Cellar
-from django.http import HttpResponse
+
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User, Group
 from capstone_code.forms import SignUpForm
@@ -11,7 +11,7 @@ from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.renderers import TemplateHTMLRenderer
-
+from django.http import HttpResponse
 # Create your views here.
 
 
@@ -106,6 +106,14 @@ def render_wine_form(request):
     :return: 
     """
     return render(request, "./add_wine.html")
+
+def render_cellar_form(request):
+    """
+    
+    :param request: 
+    :return: 
+    """
+    return render(request, "./add_cellar_data.html")
 
 
 def signup(request):

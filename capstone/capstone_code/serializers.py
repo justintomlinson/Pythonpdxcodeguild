@@ -3,11 +3,11 @@ from rest_framework import serializers
 from capstone_code.models import Wine, Winery, Cellar
 
 
+
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     """
     
     """
-    #wines = serializers.PrimaryKeyRelatedField(queryset=Wine.objects.all(), view_name='wine-detail', many=True)
 
     class Meta:
         model = User
@@ -21,28 +21,40 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         model = Group
         fields = ('url', 'id', 'name')
 
+
 class WineSerializer(serializers.HyperlinkedModelSerializer):
     """
-    
+        
     """
-    #owner = serializers.ReadOnlyField(source='owner.username')
-    #highlight = serializers.HyperlinkedIdentityField(view_name='wine-highlight', format='html')
-
     class Meta:
         model = Wine
-        fields = ('url', 'id', 'wine_name', 'winery_name', 'varietal', 'price', 'quantity')
+        fields = ('url', 'id', 'wine_name', 'winery_name', 'varietal', 'barcode', 'price', 'quantity')
 
 class WinerySerializer(serializers.HyperlinkedModelSerializer):
     """
     
     """
-
     class Meta:
         model = Winery
-        fields = ('url', 'winery_name', 'winery_addr', 'winery_phn')
+        fields = ('url', 'id', 'winery_name', 'winery_addr', 'winery_phn')
+
+
+
 
 class CellarSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Cellar
-        fields = ('url', 'wine_name', 'winery_name', 'username')
+        fields = ('id', 'wine_name', 'winery_name')
+
+    def create(self, validated_data):
+        request = self.context.get("request")
+        if request and hasattr(request, 'user'):
+            user = request.user
+            user.save()
+        cellar = CellarSerializer(wine_name=validated_data['wine_name'],
+                         winery_name=validated_data['winery_name'],
+                         user=validated_data['user'])
+        cellar.save()
+        return cellar
+

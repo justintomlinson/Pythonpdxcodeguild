@@ -1,8 +1,9 @@
 from django import forms
-from capstone_code.models import Wine, Winery
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.forms import ModelForm
+
+#from django.forms import ModelForm
+#from capstone_code.models import Wine, Winery, Cellar
 
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
@@ -14,16 +15,28 @@ class SignUpForm(UserCreationForm):
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
 
 
-class WineryForm(ModelForm):
+# class WineryForm(ModelForm):
+#
+#     class Meta:
+#         model = Winery
+#         fields = ['winery_name', 'winery_addr', 'winery_phn']
+#
+#
+# class WineForm(ModelForm):
+#
+#     class Meta:
+#         model = Wine
+#         fields = ['wine_name', 'winery_name', 'varietal', 'price', 'quantity']
+#
+# class CellarForm(ModelForm):
+#     """
+#     Form for user input of their wines by name, winery and barcode
+#     """
+#     class Meta:
+#         model = Cellar
+#         fields = ['wine_name', 'winery_name', 'barcode']
 
-    class Meta:
-        model = Winery
-        fields = ['winery_name', 'winery_addr', 'winery_phn']
 
 
-class WineForm(ModelForm):
 
-    class Meta:
-        model = Wine
-        fields = ['wine_name', 'winery_name', 'varietal', 'price', 'quantity']
 
