@@ -3,31 +3,41 @@ html {
     display: flex;
 }
 
+body {
+    background-color: floralwhite ;
+}
+
 .container {
     display: flex;
     flex: 2;
-}
-
-body {
-    background-color: #f4e1d2 ;
+    text-align-all: center;
+    height: 100%;
 }
 
 
 .sidebar {
+    display: flex;
+    height: inherit;
     width: 30%;
-    background-color: #50394c ;
-
-}
-
-.nav-menu {
-    color: white;
+    background-color: #50394c;
     text-align: center;
+    color: white;
+
 }
+
+
+#nav-list {
+    width: inherit;
+    text-align: left;
+    color: white;
+}
+
 
 .main {
-    display: flex;
-    -webkit-flex-direction: column;
-    flex-direction: column;
+    width:inherit;
+    text-align: justify;
+    color: black;
+    height: inherit;
 
 }
 

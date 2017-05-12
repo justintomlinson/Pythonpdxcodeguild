@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'capstone_code/style.css' %}" />
+    <script type = 'text/javascript'></script>
+    <title>{% block title %} {% endblock %}</title>
+</head>
+    <body>
+        <div class="main">
+            <b><h2>E-CELLARS</h2></b>
+            {% block content %}
+                <h3> Welcome to E-Cellar</h3>
+                <div>
+                    <p> E- Cellar provides allows you store and track your personal wine collection for
+                        constant easy access</p><br>
+
+                    <button type="button">Existing User</button> <button type="button"> New User</button>
+                </div>
+            {% endblock %}
+        </div>
+    </body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="{% static 'capstone_code/ajax_csrf_setup.js' %}"></script>
+{% block script %} {% endblock %}

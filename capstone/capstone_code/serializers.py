@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from capstone_code.models import Wine, Winery, Cellar
+import capstone_code.models as Models
+from rest_framework.fields import CurrentUserDefault
 
 
 
@@ -27,7 +28,7 @@ class WineSerializer(serializers.HyperlinkedModelSerializer):
         
     """
     class Meta:
-        model = Wine
+        model = Models.Wine
         fields = ('url', 'id', 'wine_name', 'winery_name', 'varietal', 'barcode', 'price', 'quantity')
 
 class WinerySerializer(serializers.HyperlinkedModelSerializer):
@@ -35,7 +36,7 @@ class WinerySerializer(serializers.HyperlinkedModelSerializer):
     
     """
     class Meta:
-        model = Winery
+        model = Models.Winery
         fields = ('url', 'id', 'winery_name', 'winery_addr', 'winery_phn')
 
 
@@ -44,17 +45,31 @@ class WinerySerializer(serializers.HyperlinkedModelSerializer):
 class CellarSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
-        model = Cellar
-        fields = ('id', 'wine_name', 'winery_name')
+        model = Models.Cellar
+        fields = ('id', 'wine_name', 'winery_name', 'username')
+
+
+class CellarUserProfilePublicSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Models.Cellar
+        fields = ('id','username', 'wine_name', 'winery_name')
 
     def create(self, validated_data):
-        request = self.context.get("request")
-        if request and hasattr(request, 'user'):
-            user = request.user
-            user.save()
-        cellar = CellarSerializer(wine_name=validated_data['wine_name'],
-                         winery_name=validated_data['winery_name'],
-                         user=validated_data['user'])
-        cellar.save()
-        return cellar
+        current_user = self.context['request'].username
+        my_wine_name = validated_data["Wine"].wine_name
+        wine_local = Models.Wine.objects.get(wine_name = my_wine_name)
+        my_winery_name = validated_data["Winery"].winery_name
+        winery_local = Models.Wine.objects.get(winery_name = my_winery_name)
+        my_cellar_profile = Models.Cellar(
+            username = current_user,
+            wine_name = self.validated_data["wine_name"],
+            winery_name = self.validated_data["winery_name"]
+        )
+        my_cellar_profile.save()
+        return my_cellar_profile
 
+    def update(self):
+        my_cellar_profile = Models.User.objects.get(username=CurrentUserDefault())
+        my_cellar_profile.wine_name = self.validated_data['wine_name']
+        my_cellar_profile.wunery_name = self.validated_data['winery_name']
+        my_celar_profile.save()

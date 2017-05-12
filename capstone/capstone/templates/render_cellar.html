@@ -1,0 +1,16 @@
+<!DOCTYPE html>{% extends 'base.html' %}
+{%  load staticfiles %}
+
+{% block title %} View Personal Cellar {% endblock %}
+
+{% block content %}
+<div>
+    <b><h3> Personal E-Cellar </h3></b>
+    <ul>
+     {% for item in this_cellar %}
+        <li>{{item.wine_name}},{{item.winery_name}}</li>
+        {% endfor %}
+    </ul>
+    {% csrf_token %}
+</div>
+{% endblock %}

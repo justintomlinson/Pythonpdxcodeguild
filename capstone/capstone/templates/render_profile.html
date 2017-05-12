@@ -1,0 +1,15 @@
+{%  extends 'base.html' %}
+
+{% block title %} User Info{% endblock %}
+
+{% block content %}
+    <h3> Welcome {{user.get_username}} !</h3><br>
+
+    <h4>User's Information</h4>
+    <p>
+        Username: {{user.get_username}} <br>
+        First name:{{current_user.first_name}} Last Name: {{current_user.last_name}}<br>
+        Email: {{curent_user.email}}<br>
+    </p>
+
+{% endblock %}

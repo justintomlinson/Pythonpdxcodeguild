@@ -3,35 +3,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="{% static 'capstone_code/style.css' %}" />
     <script type = 'text/javascript'></script>
-
     <title>{% block title %} {% endblock %}</title>
 </head>
-        <nav id="sidebar">
-             <div id="nav-list">
-                 <h1> Navigation </h1>
-                <ul><a href="login.html">Login</a></ul>
-                <ul><a href="home.html">Profile</a></ul>
-                <ul><a href="Cellar">Cellar</a></ul>
-                <ul><a href="http://127.0.0.1:8000/view_winery"> All Wineries</a></ul>
-                <ul><a href="http://127.0.0.1:8000/view_wines">All Wines</a></ul>
-                <ul><a href="http://127.0.0.1:8000/logged_out">Log Out</a></ul>
-            </div>
-        </nav>
-    <body class="container">
-        <b><h1>E-Cellar</h1></b>
-            <div id="main">
-            {% block content %}
-                <h3> Welcome to E-Cellar</h3>
-                <div id="descriptor">
-                    <p> E- Cellar provides allows you store and track your personal wine collection for
-                        constant easy access</p>
-                </div>
-                <button type="button">Existing User</button> <button type="button"> New User</button>
-            </div>
-        {% endblock %}
-    </body>
+<body>
+    <div class="container">
+        {% include 'sidebar.html' %}
+        <div class="main">
+        <b><h2>E-CELLARS</h2></b><br>
+        {% block content %} {% endblock %}
+        </div>
+    </div>
+</body>
 </html>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="{% static 'capstone_code/ajax_csrf_setup.js' %}"></script>

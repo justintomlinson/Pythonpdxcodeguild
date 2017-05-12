@@ -1,15 +1,11 @@
-{%  extends 'base.html' %}
-
-{% block title %} E-Cellar {% endblock %}
+{% extends 'base.html' %}
 
 {% block content %}
-    <h1> WELCOME {{user.username}}</h1>
-    <p>
-        { user.username}<br>
-        {user.first_name}{user.last_name}<br>
+    <h3> Welcome to E-Cellar</h3>
+    <div>
+        <p> E- Cellar provides allows you store and track your personal wine collection for
+            constant easy access</p><br>
 
-        {user.email}
-    </p>
-
-
+        <button type="button">Existing User</button> <button type="button"> New User</button>
+    </div>
 {% endblock %}
