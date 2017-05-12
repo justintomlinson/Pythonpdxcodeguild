@@ -1,17 +1,16 @@
 from django.shortcuts import render, redirect
 from rest_framework import viewsets
-from capstone_code.models import Wine, Winery, Cellar
-
+from capstone_code.models import Cellar, Wine, Winery
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User, Group
 from capstone_code.forms import SignUpForm
 from capstone_code.serializers import WineSerializer, WinerySerializer, CellarSerializer, UserSerializer, \
                                         GroupSerializer
-from rest_framework import generics
-from rest_framework.views import APIView
+from django.http import HttpResponse
+
 from rest_framework.response import Response
 from rest_framework.renderers import TemplateHTMLRenderer
-from django.http import HttpResponse
+
 # Create your views here.
 
 
@@ -42,17 +41,14 @@ class GroupViewSet(viewsets.ModelViewSet):
 class WineViewSet(viewsets.ModelViewSet):
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
-    `update`, `destroy`, and `highlight` action.
+    `update`, and `destroy' action.
     """
 
-    # render_classes = [TemplateHTMLRenderer]
-    # template_name = 'view_wines.html'
+
     serializer_class = WineSerializer
     queryset = Wine.objects.all()
 
 
-    # def perform_create(self, serializer):
-    #     serializer.save(owner=self.request.user)
 
 
 
@@ -61,8 +57,7 @@ class WineryViewSet(viewsets.ModelViewSet):
      API endpoint that allows winery data to be viewed or edited
     """
 
-    #render_classes = [TemplateHTMLRenderer]
-    #template_name = 'view_winery.html'
+
     queryset = Winery.objects.all()
     serializer_class = WinerySerializer
 
@@ -75,8 +70,7 @@ class CellarViewSet(viewsets.ModelViewSet):
     queryset = Cellar.objects.all()
     serializer_class = CellarSerializer
 
-    # def perform_create(self, serializer):
-    #     serializer.save(owner=self.request.user)
+
 
 
 def render_winery_form(request):
@@ -85,7 +79,6 @@ def render_winery_form(request):
     :param request: 
     :return: 
     """
-
     return render(request, "./winery_form.html")
 
 def render_profile(request):
@@ -107,13 +100,35 @@ def render_wine_form(request):
     """
     return render(request, "./add_wine.html")
 
-def render_cellar_form(request):
+def render_cellar(request, cellar_owner_in):
     """
     
     :param request: 
     :return: 
     """
-    return render(request, "./add_cellar_data.html")
+
+    this_cellar = Cellar.objects.filter(username=cellar_owner_in)
+    template_arguments = {}
+    if this_cellar is not None:
+        template_arguments = {
+            'wine_name': this_cellar.wine_name,
+            'winery_name': this_cellar.winery_name,
+        }
+    return render(request, './render_cellar.html', template_arguments)
+
+
+def add_update_user_cellar(request):
+   """
+   Adds or modifies a cellars information
+   :param request: 
+   :return: 
+   """
+
+   cellars = Cellar.objects.all()
+   form_data = {
+        'cellars': cellars
+   }
+   return render(request, "./add_update_user_cellar.html", form_data)
 
 
 def signup(request):
@@ -151,6 +166,15 @@ def view_winery(request):
     all_wineries = Winery.objects.all()
     arguments = {'winery':all_wineries}
     return render(request, "./view_winery.html", arguments)
+
+def add_winery(_, winery_name_in, winery_addr_in, winery_phn_in):
+    new_winery = models.Winery()
+    new_winery.winery_name = winery_name_in
+    new_winery.winery_addr = winery_addr_in
+    new_winery.winery_phn = winery_phn_in
+    new_winery.save()
+    return HttpResponse(new_winery.__repr__()) ;
+
 
 
 
